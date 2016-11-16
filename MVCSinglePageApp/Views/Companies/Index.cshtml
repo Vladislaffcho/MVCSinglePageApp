@@ -1,0 +1,141 @@
+﻿@using MVCSinglePageApp.DAL.Helpers
+@using MVCSinglePageApp.Models
+@model MVCSinglePageApp.Models.CompanyModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index";
+    List<CompanyModel> companies = ViewBag.Companies;
+
+    var items = new List<SelectListItem>();
+    foreach (var company in companies)
+    {
+        if (company.Type.ToString().Equals("Main"))
+        {
+            items.Add(new SelectListItem() { Text = company.Name, Value = company.Id.ToString() });
+        }
+    }
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Add Company</h2>
+            <div class="panel-body">
+                @using (Html.BeginForm("Create", "Companies", FormMethod.Post, new { onsubmit = "return validateAddCompanyForm()" }))
+                {
+                    @Html.ValidationSummary()
+                    <div class="form-group">
+                        <label>Company name:</label>
+                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label>Estimated Earnings:</label>
+                        @Html.TextBoxFor(x => x.Earnings, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label>Company Type:</label>
+                        @Html.DropDownListFor(x => x.Type, new SelectList(Enum.GetValues(typeof(CompanyTypes))), "", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label>Parent Company:</label>
+                        @Html.DropDownListFor(x => x.ParentCompanyId, items, "", new { @class = "form-control", @id = "newCompanyParent" })
+                    </div>
+                    <div class="text-left">
+                        <input class="btn btn-success" type="submit" value="Submit Company" />
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h2 id="updateCompany">Update Company</h2>
+            <div class="panel-body">
+                @using (Html.BeginForm("Edit", "Companies", FormMethod.Post, new { onsubmit = "return validateUpdateCompanyForm()" }))
+                {
+                    @Html.ValidationSummary()
+                    <div class="form-group" style="display: none">
+                        <label>Company name:</label>
+                        @Html.TextBoxFor(x => x.Id, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label>Company name:</label>
+                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label>Estimated Earnings:</label>
+                        @Html.TextBoxFor(x => x.Earnings, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label>Company Type:</label>
+                        @Html.DropDownListFor(x => x.Type, new SelectList(Enum.GetValues(typeof(CompanyTypes))), "", new { @class = "form-control", @id = "updateCompanyType" })
+                    </div>
+                    <div class="form-group">
+                        <label>Parent Company:</label>
+                        @Html.DropDownListFor(x => x.ParentCompanyId, items, "", new { @class = "form-control" })
+                    </div>
+                    <div class="text-left">
+                        <input class="btn btn-success" type="submit" value="Update Company" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<h2>Companies</h2>
+<table class="table table-striped">
+    <tr>
+        <th>
+            <p>Name</p>
+        </th>
+        <th>
+            <p>Estimated Earnings</p>
+        </th>
+        <th>
+            <p>
+                Estimated Earnings<br />
+                + Child Companies
+            </p>
+        </th>
+        <th>
+            <p>Parent Company</p>
+        </th>
+        <th>
+            <p>Company Type</p>
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+    @foreach (var company in ViewBag.Companies)
+            {
+        <tr>
+            <td>
+                <p>@company.Name</p>
+            </td>
+            <td>
+                <p>@company.Earnings</p>
+            </td>
+            <td>
+                <p>@company.TotalEarnings</p>
+            </td>
+            <td>
+                <p>
+                    @if (companies.FirstOrDefault(x => x.Id == company.ParentCompanyId) != null)
+                    {
+                        @companies.First(x => x.Id == company.ParentCompanyId).Name;
+                    }
+                </p>
+            </td>
+            <td>
+                <p>@company.Type.ToString()</p>
+            </td>
+            <td>
+                <input type="button" value="Update" onclick="passUpdateDataToForm('@company.Id', '@company.Name', '@company.Earnings','@company.Type', '@company.ParentCompanyId');" class="btn btn-default">
+            </td>
+            <td>
+                <p>@Html.ActionLink("Delete", "Delete", new { id = @company.Id }, new { @class = "btn btn-danger", onclick= "return validateDeleteCompany('" + @company.HasChildCompany + "');" })</p>
+            </td>
+        </tr>
+    }
+</table>

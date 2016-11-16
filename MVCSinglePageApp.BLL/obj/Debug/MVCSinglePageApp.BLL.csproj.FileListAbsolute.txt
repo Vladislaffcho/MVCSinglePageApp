@@ -1,0 +1,14 @@
+D:\Synch_cloud\JobApplications\101116_Vinnytsia\Companies_Task\MVCSinglePageApp\MVCSinglePageApp.BLL\bin\Debug\MVCSinglePageApp.BLL.dll.config
+D:\Synch_cloud\JobApplications\101116_Vinnytsia\Companies_Task\MVCSinglePageApp\MVCSinglePageApp.BLL\bin\Debug\MVCSinglePageApp.BLL.dll
+D:\Synch_cloud\JobApplications\101116_Vinnytsia\Companies_Task\MVCSinglePageApp\MVCSinglePageApp.BLL\bin\Debug\MVCSinglePageApp.BLL.pdb
+D:\Synch_cloud\JobApplications\101116_Vinnytsia\Companies_Task\MVCSinglePageApp\MVCSinglePageApp.BLL\bin\Debug\EntityFramework.dll
+D:\Synch_cloud\JobApplications\101116_Vinnytsia\Companies_Task\MVCSinglePageApp\MVCSinglePageApp.BLL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Synch_cloud\JobApplications\101116_Vinnytsia\Companies_Task\MVCSinglePageApp\MVCSinglePageApp.BLL\bin\Debug\MVCSinglePageApp.DAL.dll
+D:\Synch_cloud\JobApplications\101116_Vinnytsia\Companies_Task\MVCSinglePageApp\MVCSinglePageApp.BLL\bin\Debug\MVCSinglePageApp.Entity.dll
+D:\Synch_cloud\JobApplications\101116_Vinnytsia\Companies_Task\MVCSinglePageApp\MVCSinglePageApp.BLL\bin\Debug\MVCSinglePageApp.DAL.pdb
+D:\Synch_cloud\JobApplications\101116_Vinnytsia\Companies_Task\MVCSinglePageApp\MVCSinglePageApp.BLL\bin\Debug\MVCSinglePageApp.Entity.pdb
+D:\Synch_cloud\JobApplications\101116_Vinnytsia\Companies_Task\MVCSinglePageApp\MVCSinglePageApp.BLL\bin\Debug\EntityFramework.xml
+D:\Synch_cloud\JobApplications\101116_Vinnytsia\Companies_Task\MVCSinglePageApp\MVCSinglePageApp.BLL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Synch_cloud\JobApplications\101116_Vinnytsia\Companies_Task\MVCSinglePageApp\MVCSinglePageApp.BLL\obj\Debug\MVCSinglePageApp.BLL.csprojResolveAssemblyReference.cache
+D:\Synch_cloud\JobApplications\101116_Vinnytsia\Companies_Task\MVCSinglePageApp\MVCSinglePageApp.BLL\obj\Debug\MVCSinglePageApp.BLL.dll
+D:\Synch_cloud\JobApplications\101116_Vinnytsia\Companies_Task\MVCSinglePageApp\MVCSinglePageApp.BLL\obj\Debug\MVCSinglePageApp.BLL.pdb
