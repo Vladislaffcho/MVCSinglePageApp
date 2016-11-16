@@ -17,10 +17,12 @@
     }
 }
 
+@*Container with Add company and Update company forms*@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
             <h2>Add Company</h2>
+@*Add company form*@
             <div class="panel-body">
                 @using (Html.BeginForm("Create", "Companies", FormMethod.Post, new { onsubmit = "return validateAddCompanyForm()" }))
                 {
@@ -49,6 +51,7 @@
         </div>
         <div class="col-md-6">
             <h2 id="updateCompany">Update Company</h2>
+@*Update company form*@
             <div class="panel-body">
                 @using (Html.BeginForm("Edit", "Companies", FormMethod.Post, new { onsubmit = "return validateUpdateCompanyForm()" }))
                 {
@@ -82,7 +85,7 @@
     </div>
 </div>
 
-
+@*Companies grid with Update and Delete buttons*@
 <h2>Companies</h2>
 <table class="table table-striped">
     <tr>

@@ -37,11 +37,6 @@ namespace MVCSinglePageApp.Helper
             // check if a company has subsidiaries
             var subsidiaries = companies.Where(x => x.ParentCompanyId == company.Id && x.Type == CompanyTypes.Subsidiary).ToList();
 
-            if (subsidiaries.Count > 0)
-            {
-                company.HasChildCompany = true;
-            }
-
             companiesList.AddRange(subsidiaries);
 
             // check if a company has another Main company as a child
@@ -50,9 +45,19 @@ namespace MVCSinglePageApp.Helper
 
             if (subsidiaryCompany != null)
             {
-                company.HasChildCompany = true;
                 companiesList.Add(subsidiaryCompany);
                 companiesList.AddRange(companies.AddCompanies(subsidiaryCompany));
+            }
+
+            // if a company has a child or a subsidiary, setting this property to true 
+            // will prevent all chain of companies being deleted from DB in one click
+            if (subsidiaries.Count > 0 || subsidiaryCompany != null)
+            {
+                company.HasChildCompany = true;
+            }
+            else
+            {
+                company.HasChildCompany = false;
             }
 
             return companiesList;
