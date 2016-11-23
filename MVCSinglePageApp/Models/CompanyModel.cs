@@ -28,5 +28,7 @@ namespace MVCSinglePageApp.Models
         public Guid? ParentCompanyId { get; set; }
         [Display(Name = "Has Child Company")]
         public bool HasChildCompany { get; set; }
+        [Display(Name = "Has Subsidiaries")]
+        public bool HasSubsidiaries { get; set; }
     }
 }

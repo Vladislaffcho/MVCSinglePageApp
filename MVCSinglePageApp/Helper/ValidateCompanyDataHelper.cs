@@ -18,7 +18,7 @@ namespace MVCSinglePageApp.Helper
                 return false;
             }
 
-            if (company.Type == CompanyTypes.Main && company.IsWithParent())
+            if (company.Type == CompanyTypes.Main && company.IsWithParent(CompanyAction.Add))
             {
                 company.ParentCompanyId = null;
             }
@@ -27,21 +27,39 @@ namespace MVCSinglePageApp.Helper
 
         // check if a company has a Main child company
         // a company may have only one main child company
-        private static bool IsParentCompanyWithChild(this CompanyModel company)
+        private static bool IsParentCompanyWithChild(this CompanyModel company, CompanyAction action)
         {
+            CompanyModel companyToCompare;
+            
             if (company.ParentCompanyId != null)
             {
-                return MvcApplication.Companies.First(x => x.Id == company.ParentCompanyId).HasChildCompany;
+                companyToCompare = MvcApplication.Companies.First(x => x.Id == company.ParentCompanyId);
+
+                if (action == CompanyAction.Delete &&
+                    (companyToCompare.HasSubsidiaries
+                    || companyToCompare.HasChildCompany))
+                {
+                    return true;
+                }
+
+                else
+                {
+                    if (companyToCompare.HasChildCompany)
+                    {
+                        return true;
+                    }
+                }
             }
+            
             return false;
         }
 
         // check if a has a parent company
-        private static bool IsWithParent(this CompanyModel company)
+        private static bool IsWithParent(this CompanyModel company, CompanyAction action)
         {
             if (company.ParentCompanyId != null)
             {
-                return company.IsParentCompanyWithChild();
+                return company.IsParentCompanyWithChild(action);
             }
 
             return false;
@@ -75,9 +93,9 @@ namespace MVCSinglePageApp.Helper
             }
 
             // check if a parent company can have a main company as a child
-            if (company.Type == CompanyTypes.Main && company.IsWithParent())
+            if (company.Type == CompanyTypes.Main && company.IsWithParent(CompanyAction.Update))
             {
-                company.ParentCompanyId = Guid.Empty;
+                return false;
             }
 
             return true;

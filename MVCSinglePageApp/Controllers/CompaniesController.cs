@@ -27,7 +27,7 @@ namespace MVCSinglePageApp.Controllers
             // server-side validation
             if (company.IsValidToAdd())
             {
-                var companyToAdd = company.ToCompany();
+                var companyToAdd = company.ToCompany(CompanyAction.Add);
                 company.Id = companyToAdd.Id;
                 MvcApplication.CompanyBusinessLogic.Add(companyToAdd);
                 MvcApplication.Companies.Add(company);
@@ -45,7 +45,7 @@ namespace MVCSinglePageApp.Controllers
             {
                     MvcApplication.Companies.Remove(MvcApplication.Companies.Find(x => x.Id == company.Id));
                     MvcApplication.Companies.Add(company);
-                    MvcApplication.CompanyBusinessLogic.Update(company.ToCompany());
+                    MvcApplication.CompanyBusinessLogic.Update(company.ToCompany(CompanyAction.Update));
             }
 
             return RedirectToAction("Index");

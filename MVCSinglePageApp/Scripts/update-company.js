@@ -80,9 +80,9 @@ function validateTextFields(name, earnings, companyType, parentCompany) {
 }
 
 // verify that company does not have child companies
-function validateDeleteCompany(isWithChild) {
+function validateDeleteCompany(isWithChild, isWithSubsidiary) {
 
-    if (isWithChild === "True") {
+    if (isWithChild === "True" || isWithSubsidiary === "True") {
         alert("Error: Delete child companies first");
         return false;
     }

@@ -137,7 +137,7 @@
                 <input type="button" value="Update" onclick="passUpdateDataToForm('@company.Id', '@company.Name', '@company.Earnings','@company.Type', '@company.ParentCompanyId');" class="btn btn-default">
             </td>
             <td>
-                <p>@Html.ActionLink("Delete", "Delete", new { id = @company.Id }, new { @class = "btn btn-danger", onclick= "return validateDeleteCompany('" + @company.HasChildCompany + "');" })</p>
+                <p>@Html.ActionLink("Delete", "Delete", new { id = @company.Id }, new { @class = "btn btn-danger", onclick= "return validateDeleteCompany('" + @company.HasChildCompany + ", " + @company.HasSubsidiaries + "');" })</p>
             </td>
         </tr>
     }

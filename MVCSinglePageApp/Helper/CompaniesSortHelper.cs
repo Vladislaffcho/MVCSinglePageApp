@@ -51,13 +51,22 @@ namespace MVCSinglePageApp.Helper
 
             // if a company has a child or a subsidiary, setting this property to true 
             // will prevent all chain of companies being deleted from DB in one click
-            if (subsidiaries.Count > 0 || subsidiaryCompany != null)
+            if (subsidiaryCompany != null)
             {
                 company.HasChildCompany = true;
             }
             else
             {
                 company.HasChildCompany = false;
+            }
+
+            if (subsidiaries.Count > 0)
+            {
+                company.HasSubsidiaries = true;
+            }
+            else
+            {
+                company.HasSubsidiaries = false;
             }
 
             return companiesList;

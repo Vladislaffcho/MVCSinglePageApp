@@ -29,21 +29,24 @@ namespace MVCSinglePageApp.Helper
             return convertedCompany;
         }
 
-        // method converts Company into CompanyModel
-        public static Company ToCompany(this CompanyModel company)
+        // method converts Company into CompanyModel for both Update and Add methods
+        public static Company ToCompany(this CompanyModel company, CompanyAction action)
         {
-            var convertedCompany = new Company()
-            {
-                Name = company.Name,
-                AnnualEarnings = company.Earnings,
-                CompanyType = MvcApplication.CompanyBusinessLogic.GetCompanyType(company.Type)
-            };
+            Company convertedCompany;
 
-            if (company.Id != Guid.Empty)
+            if (action == CompanyAction.Add)
             {
-                convertedCompany.Id = company.Id;
+                convertedCompany = new Company();
+            }
+            else
+            {
+                convertedCompany = MvcApplication.CompanyBusinessLogic.GetById(company.Id);
             }
 
+            convertedCompany.Name = company.Name;
+            convertedCompany.AnnualEarnings = company.Earnings;
+            convertedCompany.CompanyType = MvcApplication.CompanyBusinessLogic.GetCompanyType(company.Type);
+            
             if (company.ParentCompanyId != null)
             {
                 convertedCompany.ParentCompany =

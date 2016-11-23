@@ -161,6 +161,7 @@
     </Compile>
     <Compile Include="Helper\CalculateTotalEarningsHelper.cs" />
     <Compile Include="Helper\CompaniesSortHelper.cs" />
+    <Compile Include="Helper\CompanyAction.cs" />
     <Compile Include="Helper\CompanyTypeConverterHelper.cs" />
     <Compile Include="Helper\ValidateCompanyDataHelper.cs" />
     <Compile Include="Models\CompanyModel.cs" />
